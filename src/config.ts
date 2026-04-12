@@ -12,7 +12,7 @@ export const API_CONFIG: ApiConfig = {
       price: "$0.005",
       description: "Get the best swap quote across multiple DEXes",
       toolName: "dex_get_swap_quote",
-      toolDescription: "Use this when you need a swap quote before trading tokens on-chain. Returns best price across DEXes (Uniswap, SushiSwap, Aerodrome on Base), price impact, minimum received, route path. Supports Base and Ethereum. Do NOT use for executing swaps — only quotes. Ideal for price comparison, trade sizing, slippage estimation.",
+      toolDescription: "Use this when you need a swap quote before trading tokens on-chain. Returns best price across DEXes (Uniswap, SushiSwap, Aerodrome on Base), price impact, minimum received, route path. Supports Base and Ethereum. Ideal for price comparison, trade sizing, slippage estimation. Do NOT use for gas estimation — use gas_get_current_price. Do NOT use for yield opportunities — use defi_find_best_yields. Do NOT use for wallet balance — use wallet_get_portfolio.",
       inputSchema: {
         type: "object",
         properties: {
