@@ -40,6 +40,84 @@ Do NOT use for gas estimation only -- use gas_get_current_price instead. Do NOT 
         },
         required: ["tokenIn", "tokenOut", "amount"],
       },
+      outputSchema: {
+          "type": "object",
+          "properties": {
+            "tokenIn": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string"
+                },
+                "symbol": {
+                  "type": "string"
+                },
+                "decimals": {
+                  "type": "number"
+                }
+              }
+            },
+            "tokenOut": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string"
+                },
+                "symbol": {
+                  "type": "string"
+                },
+                "decimals": {
+                  "type": "number"
+                }
+              }
+            },
+            "amountIn": {
+              "type": "string",
+              "description": "Input amount in raw units"
+            },
+            "amountInFormatted": {
+              "type": "string",
+              "description": "Input amount formatted"
+            },
+            "amountOut": {
+              "type": "string",
+              "description": "Output amount in raw units"
+            },
+            "amountOutFormatted": {
+              "type": "string",
+              "description": "Output amount formatted"
+            },
+            "price": {
+              "type": "string",
+              "description": "Effective price"
+            },
+            "priceImpact": {
+              "type": "string",
+              "description": "Price impact percentage"
+            },
+            "route": {
+              "type": "string",
+              "description": "Swap route description"
+            },
+            "dex": {
+              "type": "string",
+              "description": "DEX used"
+            },
+            "chain": {
+              "type": "string",
+              "description": "Chain"
+            },
+            "estimatedGas": {
+              "type": "string",
+              "description": "Estimated gas cost"
+            }
+          },
+          "required": [
+            "tokenIn",
+            "tokenOut",
+            "amountIn"
+          ]
+        },
     },
   ],
 };
