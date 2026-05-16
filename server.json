@@ -12,7 +12,7 @@
   "remotes": [
     {
       "type": "sse",
-      "url": "https://dex-quotes-x402-production.up.railway.app/mcp"
+      "url": "https://dex-quotes.api.klymax402.com/mcp"
     }
   ]
 }
