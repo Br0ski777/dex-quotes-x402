@@ -162,12 +162,15 @@ function feeTierToLabel(fee: number): string {
 }
 
 export function registerRoutes(app: Hono) {
-  app.get("/api/quote", async (c) => {
+  async function handleQuote(
+    c: any,
+    params: { tokenIn?: string; tokenOut?: string; amount?: string; chain?: string }
+  ) {
     await tryRequirePayment(0.005);
-    const tokenIn = c.req.query("tokenIn");
-    const tokenOut = c.req.query("tokenOut");
-    const amount = c.req.query("amount");
-    const chain = (c.req.query("chain") || "base").toLowerCase();
+    const tokenIn = params.tokenIn;
+    const tokenOut = params.tokenOut;
+    const amount = params.amount;
+    const chain = (params.chain || "base").toLowerCase();
 
     if (!tokenIn || !tokenOut || !amount) {
       return c.json({ error: "Missing required parameters: tokenIn, tokenOut, amount" }, 400);
@@ -271,6 +274,29 @@ export function registerRoutes(app: Hono) {
         amountOutFormatted: formatAmount(q.amountOut, decimalsOut),
         estimatedGas: q.gasEstimate.toString(),
       })),
+    });
+  }
+
+  app.get("/api/quote", async (c) => {
+    return handleQuote(c, {
+      tokenIn: c.req.query("tokenIn"),
+      tokenOut: c.req.query("tokenOut"),
+      amount: c.req.query("amount"),
+      chain: c.req.query("chain"),
+    });
+  });
+
+  // POST mirror of the GET route above -- Bazaar (CDP) only reliably indexes
+  // POST payments with valid payloads (~82% conversion vs ~14% for GET-only
+  // resources, confirmed empirically). Same params, same logic, just body
+  // instead of query string.
+  app.post("/api/quote", async (c) => {
+    const body = await c.req.json().catch(() => ({}) as any);
+    return handleQuote(c, {
+      tokenIn: body.tokenIn,
+      tokenOut: body.tokenOut,
+      amount: body.amount,
+      chain: body.chain,
     });
   });
 }
