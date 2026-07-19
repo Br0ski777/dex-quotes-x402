@@ -9,7 +9,7 @@ export const API_CONFIG: ApiConfig = {
     {
       method: "GET",
       path: "/api/quote",
-      price: "$0.005",
+      price: "$0.012",
       description: "Get the best swap quote across multiple DEXes",
       toolName: "dex_get_swap_quote",
       toolDescription: `Use this when you need a swap quote before trading tokens on-chain. Returns the best price across multiple DEXes in JSON.
@@ -122,7 +122,7 @@ Do NOT use for gas estimation only -- use gas_get_current_price instead. Do NOT 
     {
       method: "POST",
       path: "/api/quote",
-      price: "$0.005",
+      price: "$0.012",
       description: "Get the best swap quote across multiple DEXes (POST variant)",
       toolName: "dex_get_swap_quote",
       toolDescription: `Use this when you need a swap quote before trading tokens on-chain. Returns the best price across multiple DEXes in JSON. POST variant of dex_get_swap_quote -- same params passed as JSON body instead of query string.
