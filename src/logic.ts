@@ -25,7 +25,7 @@ const CHAINS: Record<string, { coingeckoId: string; rpcUrl: string; quoterV2: st
   },
   ethereum: {
     coingeckoId: "ethereum",
-    rpcUrl: "https://eth.llamarpc.com",
+    rpcUrl: "https://ethereum-rpc.publicnode.com",
     quoterV2: "0x61fFE014bA17989E743c5F6cB21bF9697530B21e",
     dexes: ["Uniswap V3", "SushiSwap", "Curve"],
   },
